@@ -7,8 +7,20 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LibraryTest {
-    @Test void testSomeLibraryMethod() {
+
+    @Test
+    void getMinorAddedPathWhenMinorPathIsInTheThreadRow() {
         Library classUnderTest = new Library();
-        assertEquals(6L, classUnderTest.getMinorAddedPath());
+        int [][] matrix = {{1, 2, 9},{2, 10, 3},{1, 1, 1}};
+        long [] result = {1, 1, 1, 3};
+        assertArrayEquals(result, classUnderTest.getMinorAddedPath(matrix));
+    }
+
+    @Test
+    void testSomeLibraryMethod() {
+        Library classUnderTest = new Library();
+        int [][] matrix = {{1, 2, 9},{2, 5, 3},{5, 1, 5}};
+        long [] result = {1, 2, 3, 6};
+        assertArrayEquals(result, classUnderTest.getMinorAddedPath(matrix));
     }
 }
