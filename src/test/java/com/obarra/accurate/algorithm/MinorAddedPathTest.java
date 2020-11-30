@@ -4,23 +4,24 @@
 package com.obarra.accurate.algorithm;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 class MinorAddedPathTest {
 
     @Test
     void getMinorAddedPathWhenMinorPathIsInTheThreadRow() {
         MinorAddedPath classUnderTest = new MinorAddedPath();
-        int [][] matrix = {{1, 2, 9},{2, 10, 3},{1, 1, 1}};
-        long [] result = {1, 1, 1, 3};
+        int[][] matrix = {{1, 2, 9}, {2, 10, 3}, {1, 1, 1}};
+        long[] result = {1, 1, 1, 3};
         assertArrayEquals(result, classUnderTest.getMinorAddedPath(matrix));
     }
 
     @Test
     void testSomeLibraryMethod() {
         MinorAddedPath classUnderTest = new MinorAddedPath();
-        int [][] matrix = {{1, 2, 9},{2, 5, 3},{5, 1, 5}};
-        long [] result = {1, 2, 3, 6};
+        int[][] matrix = {{1, 2, 9}, {2, 5, 3}, {5, 1, 5}};
+        long[] result = {1, 2, 3, 6};
         assertArrayEquals(result, classUnderTest.getMinorAddedPath(matrix));
     }
 }
