@@ -1,4 +1,4 @@
-package com.obarra.accurate.algorithm;
+package com.obarra.alg;
 
 import java.util.ArrayList;
 import java.util.Arrays;
