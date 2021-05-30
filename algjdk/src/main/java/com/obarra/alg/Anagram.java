@@ -67,20 +67,20 @@ public class Anagram {
             return false;
         }
 
-        Map<Integer, Integer> counterLetters = new HashMap<>();
+        Map<Character, Integer> counterLetters = new HashMap<>();
 
         for (int i = 0; i < word.length(); i++) {
-            counterLetters.merge((int) word.charAt(i), 1, (v1, v2) -> v1 + v2);
+            counterLetters.merge(word.charAt(i), 1, Integer::sum);
         }
 
         for (int i = 0; i < otherWord.length(); i++) {
-            int indexLetter = otherWord.charAt(i);
-            Integer counter = counterLetters.get(indexLetter);
+            Character letter = otherWord.charAt(i);
+            Integer counter = counterLetters.get(letter);
 
             if (counter == null || counter < 1) {
                 return false;
             } else {
-                counterLetters.put(indexLetter, counter - 1);
+                counterLetters.merge(letter, 1, (v1 , v2) -> v1 - v2);
             }
         }
 
