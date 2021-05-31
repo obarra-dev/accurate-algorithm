@@ -22,3 +22,23 @@ func bracketMatcher(word string) bool {
 
 	return false
 }
+
+func bracketMatcherWithCounter(word string) bool {
+	var counter int
+	for _, s := range word {
+		switch {
+		case s == '(':
+			counter++
+		case s == ')':
+			counter--
+		case counter < 0:
+			return false
+		}
+	}
+
+	if counter == 0 {
+		return true
+	}
+
+	return false
+}
