@@ -37,3 +37,31 @@ func formatFlatten(f []interface{}) string {
 
 	return sb.String()
 }
+
+func mostRepeated(sentence string) string {
+	n := strings.ToUpper(sentence)
+	words := strings.Fields(n)
+
+	counter := make(map[string]uint)
+	for _, v := range words {
+		counter[v]++
+	}
+
+	var mr = struct {
+		word   string
+		amount uint
+	}{
+		word:   "",
+		amount: 0,
+	}
+
+	for k, v := range counter {
+		if v > mr.amount {
+			mr.word = k
+			mr.amount = v
+		}
+	}
+
+	return mr.word
+
+}
