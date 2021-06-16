@@ -39,3 +39,22 @@ func Test_mostRepeated(t *testing.T) {
 		}
 	}
 }
+
+
+var caseTestIsPalindrome = []struct {
+	arg    string
+	expect bool
+}{
+	{"omar alberto barra omar", false},
+	{"aaaaaaaaaa", true},
+}
+
+func Test_isPalindrome(t *testing.T) {
+	for i, ct := range caseTestIsPalindrome {
+		got := isPalindrome(ct.arg)
+		if got != ct.expect {
+			t.Errorf("Test[%d]: isPalindrome(%s) expect %v, got %v",
+				i, ct.arg, ct.expect, got)
+		}
+	}
+}
