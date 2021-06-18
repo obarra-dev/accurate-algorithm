@@ -122,3 +122,17 @@ func jumpingOnClouds(clouds []int) int {
 	}
 	return jump
 }
+
+func salesByMatch(socks []int) int {
+	storage := make([]int, 100)
+	for _, v := range socks {
+		storage[v]++
+	}
+
+	var amountPairs int
+	for _, v := range storage {
+		amountPairs += v / 2
+	}
+
+	return amountPairs
+}

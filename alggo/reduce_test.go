@@ -79,7 +79,6 @@ func Test_findFirstDuplicated(t *testing.T) {
 	}
 }
 
-
 func Test_calculateSqrtSorted(t *testing.T) {
 	var caseTest = []struct {
 		arg    []float64
@@ -98,22 +97,39 @@ func Test_calculateSqrtSorted(t *testing.T) {
 	}
 }
 
-
 func Test_jumpingOnClouds(t *testing.T) {
 	var caseTest = []struct {
 		arg    []int
 		expect int
 	}{
 		{[]int{0, 0, 1, 0, 0}, 3},
-		{[]int{0 ,0 ,1, 0 ,0 ,1 ,0}, 4},
-		{[]int{0, 0, 0, 0 ,1, 0}, 3},
-		{[]int{0, 0, 0, 0 ,0, 0}, 3},
+		{[]int{0, 0, 1, 0, 0, 1, 0}, 4},
+		{[]int{0, 0, 0, 0, 1, 0}, 3},
+		{[]int{0, 0, 0, 0, 0, 0}, 3},
 	}
 
 	for i, ct := range caseTest {
 		got := jumpingOnClouds(ct.arg)
-		if got != ct.expect{
+		if got != ct.expect {
 			t.Errorf("Test[%d]: jumpingOnClouds(%v) expect %v, got %v",
+				i, ct.arg, ct.expect, got)
+		}
+	}
+}
+
+func Test_salesByMatch(t *testing.T) {
+	var caseTest = []struct {
+		arg    []int
+		expect int
+	}{
+		{[]int{0, 0, 1, 0, 0}, 2},
+		{[]int{10, 20, 20, 10, 10, 30, 50, 10, 20}, 3},
+	}
+
+	for i, ct := range caseTest {
+		got := salesByMatch(ct.arg)
+		if got != ct.expect {
+			t.Errorf("Test[%d]: salesByMatch(%v) expect %v, got %v",
 				i, ct.arg, ct.expect, got)
 		}
 	}
