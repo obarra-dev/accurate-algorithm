@@ -1,6 +1,7 @@
 package alggo
 
 import (
+	"reflect"
 	"testing"
 )
 
@@ -40,7 +41,6 @@ func Test_mostRepeated(t *testing.T) {
 	}
 }
 
-
 var caseTestIsPalindrome = []struct {
 	arg    string
 	expect bool
@@ -54,6 +54,66 @@ func Test_isPalindrome(t *testing.T) {
 		got := isPalindrome(ct.arg)
 		if got != ct.expect {
 			t.Errorf("Test[%d]: isPalindrome(%s) expect %v, got %v",
+				i, ct.arg, ct.expect, got)
+		}
+	}
+}
+
+func Test_findFirstDuplicated(t *testing.T) {
+	var caseTest = []struct {
+		arg    []int
+		expect int
+	}{
+		{[]int{1, 2, 4, 5, 5}, 5},
+		{[]int{1, 2, 4, 2, 5, 5}, 2},
+		{[]int{1, 2, 4, 5, 5, 2}, 5},
+		{[]int{1, 2, 4, 3, 5, 6}, 0},
+	}
+
+	for i, ct := range caseTest {
+		got := findFirstDuplicated(ct.arg)
+		if got != ct.expect {
+			t.Errorf("Test[%d]: findFirstDuplicated(%v) expect %v, got %v",
+				i, ct.arg, ct.expect, got)
+		}
+	}
+}
+
+
+func Test_calculateSqrtSorted(t *testing.T) {
+	var caseTest = []struct {
+		arg    []float64
+		expect []float64
+	}{
+		{[]float64{1, 2, 4, 5, 5}, []float64{2, 4, 16, 25, 25}},
+		{[]float64{-2, -1, 4, 5, 5}, []float64{1, 4, 16, 25, 25}},
+	}
+
+	for i, ct := range caseTest {
+		got := calculateSqrtSorted(ct.arg)
+		if !reflect.DeepEqual(got, ct.expect) {
+			t.Errorf("Test[%d]: calculateSqrtSorted(%v) expect %v, got %v",
+				i, ct.arg, ct.expect, got)
+		}
+	}
+}
+
+
+func Test_jumpingOnClouds(t *testing.T) {
+	var caseTest = []struct {
+		arg    []int
+		expect int
+	}{
+		{[]int{0, 0, 1, 0, 0}, 3},
+		{[]int{0 ,0 ,1, 0 ,0 ,1 ,0}, 4},
+		{[]int{0, 0, 0, 0 ,1, 0}, 3},
+		{[]int{0, 0, 0, 0 ,0, 0}, 3},
+	}
+
+	for i, ct := range caseTest {
+		got := jumpingOnClouds(ct.arg)
+		if got != ct.expect{
+			t.Errorf("Test[%d]: jumpingOnClouds(%v) expect %v, got %v",
 				i, ct.arg, ct.expect, got)
 		}
 	}

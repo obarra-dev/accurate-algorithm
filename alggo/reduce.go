@@ -1,6 +1,7 @@
 package alggo
 
 import (
+	"math"
 	"strconv"
 	"strings"
 )
@@ -74,4 +75,50 @@ func isPalindrome(str string) bool {
 	}
 
 	return true
+}
+
+func findFirstDuplicated(numbers []int) int {
+	length := len(numbers)
+	for i := 0; i < length; i++ {
+		index := numbers[i]
+		if index < 0 {
+			index = -index
+		}
+		if numbers[index-1] > 0 {
+			numbers[index-1] = -numbers[index-1]
+		} else {
+			return index
+		}
+	}
+
+	return 0
+}
+
+func calculateSqrtSorted(number []float64) []float64 {
+	ss := make([]float64, len(number))
+	j := len(number) - 1
+	for i, v := range number {
+		if v < 0 && math.Abs(v) > math.Abs(number[j]) {
+			ss[j] = v * v
+		} else {
+			ss[i] = v * v
+		}
+		j--
+	}
+
+	return ss
+}
+
+func jumpingOnClouds(clouds []int) int {
+	var jump int
+	length := len(clouds)
+	for i := 0; i < length; i++ {
+		if i+2 < length && clouds[i+2] == 0 {
+			jump++
+			i++
+		} else if i+1 < length && clouds[i+1] == 0 {
+			jump++
+		}
+	}
+	return jump
 }
