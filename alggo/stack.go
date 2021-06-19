@@ -42,3 +42,35 @@ func bracketMatcherWithCounter(word string) bool {
 
 	return false
 }
+
+// https://leetcode.com/problems/remove-k-digits/
+func removeKDigits(digits string, k int) string {
+	if k >= len(digits) {
+		return "0"
+	}
+
+	var stack []rune
+	for _, v := range digits {
+		for len(stack) > 0 && k > 0 && stack[len(stack)-1] > v {
+			//pop
+			stack = stack[:len(stack)-1]
+			k--
+		}
+
+		if len(stack) > 0 || v != '0' {
+			stack = append(stack, v)
+		}
+	}
+
+	for len(stack) > 0 && k > 0 {
+		//pop
+		stack = stack[:len(stack)-1]
+		k--
+	}
+
+	if len(stack) == 0 {
+		return "0"
+	}
+
+	return string(stack)
+}

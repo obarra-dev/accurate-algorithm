@@ -20,3 +20,4 @@ func Test_highestHourglass(t *testing.T) {
 		}
 	}
 }
+
