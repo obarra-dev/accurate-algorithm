@@ -37,8 +37,8 @@ func Test_bracketMatcherWithCounter(t *testing.T) {
 
 func Test_removeKDigits(t *testing.T) {
 	var caseTest = []struct {
-		digits    string
-		k    int
+		digits string
+		k      int
 		expect string
 	}{
 		{"1432219", 3, "1219"},
@@ -56,6 +56,26 @@ func Test_removeKDigits(t *testing.T) {
 		if got != ct.expect {
 			t.Errorf("Test[%d]: removeKDigits(%v, %v) expect %v, got %v",
 				i, ct.digits, ct.k, ct.expect, got)
+		}
+	}
+}
+
+func Test_countStudentsWithoutLunch(t *testing.T) {
+	var caseTest = []struct {
+		typeLunches []uint
+		preferences []uint
+		expect      uint
+	}{
+		{[]uint{0, 1, 0, 0}, []uint{0, 0, 0, 0}, 3},
+		{[]uint{0, 0, 1, 0}, []uint{1, 0, 0, 0}, 0},
+		{[]uint{0, 1, 1, 0, 1, 0}, []uint{1, 1, 1, 0, 1, 0}, 1},
+	}
+
+	for i, ct := range caseTest {
+		got := countStudentsWithoutLunch(ct.typeLunches, ct.preferences)
+		if got != ct.expect {
+			t.Errorf("Test[%d]: countStudentsWithoutLunch(%v, %v) expect %v, got %v",
+				i, ct.typeLunches, ct.preferences, ct.expect, got)
 		}
 	}
 }

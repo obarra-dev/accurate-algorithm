@@ -134,3 +134,30 @@ func Test_salesByMatch(t *testing.T) {
 		}
 	}
 }
+
+func Test_detectNetwork(t *testing.T) {
+	var caseTest = []struct {
+		arg    string
+		expect string
+	}{
+		{"341234567890123", "American Express"},
+		{"371234567890123", "American Express"},
+		{"38123456789012", "Diners Club"},
+		{"5112345678901245", "MasterCard"},
+		{"5212345678901245", "MasterCard"},
+		{"5312345678901245", "MasterCard"},
+		{"5412345678901245", "MasterCard"},
+		{"5512345678901245", "MasterCard"},
+		{"4512345678901", "Visa"},
+		{"4512345678901345", "Visa"},
+		{"4512345678901345345", "Visa"},
+	}
+
+	for i, ct := range caseTest {
+		got := detectNetwork(ct.arg)
+		if got != ct.expect {
+			t.Errorf("Test[%d]: detectNetwork(%v) expect %v, got %v",
+				i, ct.arg, ct.expect, got)
+		}
+	}
+}

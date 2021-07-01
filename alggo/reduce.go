@@ -136,3 +136,42 @@ func salesByMatch(socks []int) int {
 
 	return amountPairs
 }
+
+func detectNetwork(cardNumber string) string {
+	var networkRules = []struct {
+		network string
+		iin     []string
+		length  []int
+	}{
+		{"American Express", []string{"34", "37"}, []int{15}},
+		{"Diners Club", []string{"38", "39"}, []int{14}},
+		{"Visa", []string{"4"}, []int{13, 16, 19}},
+		{"MasterCard", []string{"51", "52", "53", "54", "55"}, []int{16}},
+	}
+
+	validateIIN := func(iin []string, cardNumber string) bool {
+		for _, v := range iin {
+			if strings.HasPrefix(cardNumber, v) {
+				return true
+			}
+		}
+		return false
+	}
+
+	validateLength := func(length []int, cardNumber string) bool {
+		for _, v := range length {
+			if v == len(cardNumber) {
+				return true
+			}
+		}
+		return false
+	}
+
+	for _, v := range networkRules {
+		if validateIIN(v.iin, cardNumber) && validateLength(v.length, cardNumber) {
+			return v.network
+		}
+	}
+
+	return "no match"
+}

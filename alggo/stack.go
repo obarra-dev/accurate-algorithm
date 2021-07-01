@@ -74,3 +74,26 @@ func removeKDigits(digits string, k int) string {
 
 	return string(stack)
 }
+
+func countStudentsWithoutLunch(lunches []uint, preferences []uint) uint {
+	//lunches is a inverted stack
+	//preferences is a queue
+	var elements = uint(len(preferences))
+	for elements > 0 {
+		top := lunches[0]
+		tail := preferences[0]
+		//dequeue
+		preferences = preferences[1:]
+		if tail == top {
+			//pop
+			lunches = lunches[1:]
+			elements = uint(len(preferences))
+		} else {
+			//enqueue
+			preferences = append(preferences, tail)
+			elements--
+		}
+	}
+
+	return uint(len(preferences))
+}
