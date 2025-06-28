@@ -11,4 +11,3 @@ plugins {
 }
 
 rootProject.name = "accurate-algorithm"
-include("app")
