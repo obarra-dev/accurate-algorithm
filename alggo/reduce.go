@@ -1,6 +1,7 @@
 package alggo
 
 import (
+	"fmt"
 	"math"
 	"strconv"
 	"strings"
@@ -95,6 +96,7 @@ func findFirstDuplicated(numbers []int) int {
 }
 
 func calculateSqrtSorted(number []float64) []float64 {
+	fmt.Println("omar rules method")
 	ss := make([]float64, len(number))
 	j := len(number) - 1
 	for i, v := range number {
