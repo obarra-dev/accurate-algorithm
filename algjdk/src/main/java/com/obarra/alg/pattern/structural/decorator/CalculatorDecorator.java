@@ -4,7 +4,7 @@ import com.obarra.alg.pattern.structural.decorator.legacy.InsuranceCalculator;
 
 public abstract class CalculatorDecorator implements InsuranceCalculator {
 
-    private InsuranceCalculator insuranceCalculator;
+    private final InsuranceCalculator insuranceCalculator;
 
     public CalculatorDecorator(InsuranceCalculator insuranceCalculator) {
         this.insuranceCalculator = insuranceCalculator;
@@ -14,9 +14,5 @@ public abstract class CalculatorDecorator implements InsuranceCalculator {
 
     public InsuranceCalculator getInsuranceCalculator() {
         return insuranceCalculator;
-    }
-
-    public void setInsuranceCalculator(InsuranceCalculator insuranceCalculator) {
-        this.insuranceCalculator = insuranceCalculator;
     }
 }
