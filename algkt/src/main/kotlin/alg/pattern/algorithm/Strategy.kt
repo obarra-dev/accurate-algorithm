@@ -1,4 +1,4 @@
-package alg
+package alg.pattern.algorithm
 
 typealias Validator = (String) -> Boolean
 
