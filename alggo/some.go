@@ -3,7 +3,6 @@ package alggo
 // TODO thing a better name for this file
 
 import (
-	"fmt"
 	"time"
 )
 
@@ -15,22 +14,25 @@ type Book struct {
 
 // filterByOldestDate returns a list of books that share the oldest published date.
 func filterByOldestDate(list []Book) []Book {
-	fmt.Println("omar alberto barra")
 	var oldestList []Book
-	for _, file := range list {
+	for _, item := range list {
+		// the first item is always added
 		if len(oldestList) == 0 {
-			oldestList = append(oldestList, file)
+			oldestList = append(oldestList, item)
 			continue
 		}
-		compared := file.PublishedAt.Compare(oldestList[0].PublishedAt)
+
+		compared := item.PublishedAt.Compare(oldestList[0].PublishedAt)
 		if compared > 0 {
 			continue
 		}
 		if compared < 0 {
+			// if the current item is older than the first one, we clear the list
+			// and add the current item
 			oldestList = oldestList[:0]
-			oldestList = append(oldestList, file)
+			oldestList = append(oldestList, item)
 		} else {
-			oldestList = append(oldestList, file)
+			oldestList = append(oldestList, item)
 		}
 	}
 	return oldestList
